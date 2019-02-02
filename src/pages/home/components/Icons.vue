@@ -1,11 +1,11 @@
 <template>
     <div class="icons">
-        <swiper >
+        <swiper :options="swiperOption">
             <swiper-slide v-for='(page, index) of pages' :key='index'>
                 <div class="icon" v-for='item of page' :key='item.id'>
                     <div class="icon-img" >
-                        <img class="icon-img-content" :src="item.iconImgUrl" alt="">
-                        <p class="icon-desc">{{item.p}}</p>
+                        <img class="icon-img-content" :src="item.imgUrl" alt="">
+                        <p class="icon-desc">{{item.desc}}</p>
                     </div>
                 </div>
             </swiper-slide>
@@ -17,49 +17,14 @@
 <script>
 export default {
     name: 'HomeIcons',
+    props: {
+        iconList: Array
+    },
     data () {
         return {
-            iconList: [{
-                id: '0001',
-                p: '热门景点',
-                iconImgUrl: 'https://pic.c-ctrip.com/VacationH5Pic/group_travel/index/small54_01.png'
-            },{
-                id: '0002',
-                p: '滑雪季',
-                iconImgUrl: 'https://pic.c-ctrip.com/VacationH5Pic/group_travel/index/small54_01.png'
-            },{
-                id: '0003',
-                p: '滑雪季',
-                iconImgUrl: 'https://pic.c-ctrip.com/VacationH5Pic/group_travel/index/small54_01.png'
-            },{
-                id: '0004',
-                p: '滑雪季',
-                iconImgUrl: 'https://pic.c-ctrip.com/VacationH5Pic/group_travel/index/small54_01.png'
-            },{
-                id: '0005',
-                p: '滑雪季',
-                iconImgUrl: 'https://pic.c-ctrip.com/VacationH5Pic/group_travel/index/small54_01.png'
-            },{
-                id: '0006',
-                p: '滑雪季',
-                iconImgUrl: 'https://pic.c-ctrip.com/VacationH5Pic/group_travel/index/small54_01.png'
-            },{
-                id: '0007',
-                p: '滑雪季',
-                iconImgUrl: 'https://pic.c-ctrip.com/VacationH5Pic/group_travel/index/small54_01.png'
-            },{
-                id: '0008',
-                p: '滑雪季',
-                iconImgUrl: 'https://pic.c-ctrip.com/VacationH5Pic/group_travel/index/small54_01.png'
-            },{
-                id: '0009',
-                p: '滑雪季',
-                iconImgUrl: 'https://pic.c-ctrip.com/VacationH5Pic/group_travel/index/small54_01.png'
-            },{
-                id: '00010',
-                p: '滑雪季',
-                iconImgUrl: 'https://pic.c-ctrip.com/VacationH5Pic/group_travel/index/small54_01.png'
-            }]
+            swiperOption: {
+                autoplay: false //让轮播停止自动轮播
+            }
         }
     },
     computed: {
@@ -108,7 +73,7 @@ export default {
             position: absolute
             left: 0
             right:0
-            bottom: -.3rem
+            bottom: -.4rem
             height: .44rem
             line-height: .44rem
             text-align: center

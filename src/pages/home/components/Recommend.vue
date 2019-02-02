@@ -5,8 +5,8 @@
             <li class="item border-bottom" v-for='item of recommendList' :key='item.id'>
                 <img class='item-img' :src="item.imgUrl" alt="">
                 <div class="item-info">
-                    <p class="item-title">{{item.itemTitle}}</p>
-                    <p class="item-desc">{{item.itemDesc}}</p>
+                    <p class="item-title">{{item.title}}</p>
+                    <p class="item-desc">{{item.desc}}</p>
                     <button class="item-button">查看详情</button>
                 </div>
             </li>
@@ -17,29 +17,12 @@
 <script>
 export default {
     name: 'HomeRecommend',
+    props: {
+        recommendList: Array
+    },
     data () {
         return {
-            recommendList: [{
-                id: '0001',
-                imgUrl: 'https://youimg1.c-ctrip.com/target/fd/tg/g2/M06/27/6B/CghzgVWsuQuAZfxFABkFIaVqO94008_C_100_100_Q90.jpg',
-                itemTitle: '我是闰年v额v范围我是闰年v额v范围我是闰年v额v范围',
-                itemDesc: '我是闰年v额v范围'
-            },{
-                id: '0002',
-                imgUrl: 'https://youimg1.c-ctrip.com/target/fd/tg/g2/M06/27/6B/CghzgVWsuQuAZfxFABkFIaVqO94008_C_100_100_Q90.jpg',
-                itemTitle: '我是闰年v额v范围我是闰年v额v范围我是闰年v额v范围',
-                itemDesc: '我是闰年v额v范围'
-            },{
-                id: '0003',
-                imgUrl: 'https://youimg1.c-ctrip.com/target/fd/tg/g2/M06/27/6B/CghzgVWsuQuAZfxFABkFIaVqO94008_C_100_100_Q90.jpg',
-                itemTitle: '我是闰年v额v范围我是闰年v额v范围我是闰年v额v范围',
-                itemDesc: '我是闰年v额v范围'
-            },{
-                id: '0004',
-                imgUrl: 'https://youimg1.c-ctrip.com/target/fd/tg/g2/M06/27/6B/CghzgVWsuQuAZfxFABkFIaVqO94008_C_100_100_Q90.jpg',
-                itemTitle: '我是闰年v额v范围我是闰年v额v范围我是闰年v额v范围',
-                itemDesc: '我是闰年v额v范围'
-            }]
+            
         }
     }
 }

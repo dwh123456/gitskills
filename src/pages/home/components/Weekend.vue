@@ -2,11 +2,13 @@
     <div>
         <div class="title">热销推荐</div>
         <ul>
-            <li class="item border-bottom" v-for='item of recommendList' :key='item.id'>
-                <img class='item-img' :src="item.imgUrl" alt="">
+            <li class="item border-bottom" v-for='item of weekendList' :key='item.id'>
+                <div class='item-img'>
+                    <img :src="item.imgUrl" alt="">
+                </div>
                 <div class="item-info">
-                    <p class="item-title">{{item.itemTitle}}</p>
-                    <p class="item-desc">{{item.itemDesc}}</p>
+                    <p class="item-title">{{item.title}}</p>
+                    <p class="item-desc">{{item.desc}}</p>
                 </div>
             </li>
         </ul>
@@ -16,29 +18,12 @@
 <script>
 export default {
     name: 'HomeWeekend',
+    props: {
+        weekendList: Array
+    },
     data () {
         return {
-            recommendList: [{
-                id: '0001',
-                imgUrl: 'https://dimg03.c-ctrip.com/images/100t10000000pgpli07B8_C_300_200.jpg',
-                itemTitle: '我是闰年v额v范围我是闰年v额v范围我是闰年v额v范围',
-                itemDesc: '我是闰年v额v范围'
-            },{
-                id: '0002',
-                imgUrl: 'https://dimg03.c-ctrip.com/images/100t10000000pgpli07B8_C_300_200.jpg',
-                itemTitle: '我是闰年v额v范围我是闰年v额v范围我是闰年v额v范围',
-                itemDesc: '我是闰年v额v范围'
-            },{
-                id: '0003',
-                imgUrl: 'https://dimg03.c-ctrip.com/images/100t10000000pgpli07B8_C_300_200.jpg',
-                itemTitle: '我是闰年v额v范围我是闰年v额v范围我是闰年v额v范围',
-                itemDesc: '我是闰年v额v范围'
-            },{
-                id: '0004',
-                imgUrl: 'https://dimg03.c-ctrip.com/images/100t10000000pgpli07B8_C_300_200.jpg',
-                itemTitle: '我是闰年v额v范围我是闰年v额v范围我是闰年v额v范围',
-                itemDesc: '我是闰年v额v范围'
-            }]
+            
         }
     }
 }
@@ -59,6 +44,9 @@ export default {
         margin-bottom: .1rem
         .item-img
             //width: 100%
+            overflow hidden
+            padding-bottom: 37.09%
+            height: 0
         .item-info
             flex: 1
             padding: .1rem

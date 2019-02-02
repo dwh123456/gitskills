@@ -2,7 +2,7 @@
     <div class="wrapper">
         <swiper :options="swiperOption" >
             <!-- slides  ref="mySwiper" @someSwiperEvent="callback"-->
-            <swiper-slide v-for='item of swiperList' :key='item.id'>
+            <swiper-slide v-for='item of list' :key='item.id'>
                 <img class="swiper-img" :src="item.imgUrl" alt="">
             </swiper-slide>
             <!-- Optional controls -->
@@ -14,18 +14,15 @@
 <script>
 export default {
     name: 'HomeSwiper',
+    props: {
+        list: Array
+    },
     data () {
         return {
             swiperOption: {
                 pagination: '.swiper-pagination',
                 loop: true //让轮播插件支持循环轮播
-            },swiperList: [{
-                id: '0001',
-                imgUrl: '//dimg04.c-ctrip.com/images/700p11000000q8vvaF87A_1242_470_191.jpg'
-            },{
-                id: '0002',
-                imgUrl: '//dimg04.c-ctrip.com/images/700510000000q9gcn0CD4_1242_470_191.jpg'
-            }]
+            }
         }
     }
 }
@@ -38,7 +35,7 @@ export default {
         overflow hidden
         width: 100%
         height: 0
-        padding-bottom: 37.84%
+        padding-bottom: 31.2%
         background-color: #ccc
         .swiper-img
             width: 100%
