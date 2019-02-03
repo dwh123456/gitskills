@@ -1,6 +1,6 @@
 <template>
     <ul class="list">
-        <li class="item" v-for="(item, index) of listA" :key="index">{{item}}</li>
+        <li class="item" v-for="(item, key) of cities" :key="key">{{key}}</li>
         
     </ul>
 </template>
@@ -8,6 +8,9 @@
 <script>
 export default {
     name: 'CityAlphabet',
+    props: {
+       cities: Object 
+    },
     data () {
         return {
             listA: ['a','b','c','d','e','f','g','h','i','g','h','l','m','n','o','p','q','s','y','j','u','v','w','x','y','z']

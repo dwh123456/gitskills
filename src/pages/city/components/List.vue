@@ -12,43 +12,22 @@
             <div class="area">
                 <div class="title border-topbottom">热门城市</div>
                 <div class="button-list">
-                    <div class="button-wrapper">
-                        <div class="button">北京</div>
+                    <div class="button-wrapper" v-for="item of hotCities" :key="item.id">
+                        <div class="button">{{item.name}}</div>
                     </div>
-                    <div class="button-wrapper">
-                        <div class="button">北京</div>
-                    </div>
-                    <div class="button-wrapper">
-                        <div class="button">北京</div>
-                    </div>
-                    <div class="button-wrapper">
-                        <div class="button">北京</div>
-                    </div>
-                    <div class="button-wrapper">
-                        <div class="button">北京</div>
-                    </div>
-                    <div class="button-wrapper">
-                        <div class="button">北京</div>
-                    </div>
-                    <div class="button-wrapper">
-                        <div class="button">北京</div>
-                    </div>
+                    
                 </div>
             </div>
-            <div class="area" v-for="item of list" :key="item.id">
-                <div class="title border-topbottom">A</div>
+            <div class="area" v-for="(item, key) of cities" :key='key'>
+                <div class="title border-topbottom">{{key}}</div>
                 <div class="item-list">
-                    <div class="item border-bottom">阿拉尔</div>
-                    <div class="item border-bottom">阿拉尔</div>
-                    <div class="item border-bottom">阿拉尔</div>
-                    <div class="item border-bottom">阿拉尔</div>
-                    <div class="item border-bottom">阿拉尔</div>
-                    <div class="item border-bottom">阿拉尔</div>
+                    <div class="item border-bottom" v-for="innerItem of item" :key="innerItem.id">{{innerItem.name}}</div>
+                    
                 </div>
             </div>
             
         </div>
-        <city-alphabet></city-alphabet>
+        <city-alphabet :cities='cities'></city-alphabet>
     </div>
 </template>
 
@@ -57,16 +36,9 @@ import Bscroll from 'better-scroll'
 import CityAlphabet from './Alphabet.vue'
 export default {
     name: 'List',
-    data () {
-        return {
-            list: [{
-                id: '0001'
-            },{
-                id: '0002'
-            },{
-                id: '0003'
-            }]
-        }
+    props: {
+        cities: Object,
+        hotCities: Array
     },
     components: {
         CityAlphabet
