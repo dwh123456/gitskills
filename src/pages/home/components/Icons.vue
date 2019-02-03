@@ -36,8 +36,8 @@ export default {
                     pages[page] = []
                 }
                 pages[page].push(item)
-            })
-            return pages
+            });
+            return pages;
         }
     }
 }

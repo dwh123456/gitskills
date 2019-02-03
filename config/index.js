@@ -14,7 +14,7 @@ module.exports = {
       '/api': {
         target: 'http://localhost:8080',
         pathRewrite: {
-          '^/api': '/static/mock' //当请求ajax时
+          '^/api': '/static/mock' //当请求ajax地址为/api/index.json时，将会默认变动为/static/mock地址
         }
       }
     },
