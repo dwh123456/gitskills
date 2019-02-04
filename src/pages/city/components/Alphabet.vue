@@ -1,6 +1,13 @@
 <template>
     <ul class="list">
-        <li class="item" v-for="(item, key) of cities" :key="key">{{key}}</li>
+        <li class="item" 
+            v-for="item of letters" 
+            :key="item"
+            :ref='item'
+            @click='handleLetterClick'
+            @touchstart='handleTouchStart'
+            @touchmove='handleTouchMove'
+            @touchend='handleTouchEnd'>{{item}}</li>
         
     </ul>
 </template>
@@ -13,7 +20,48 @@ export default {
     },
     data () {
         return {
-            listA: ['a','b','c','d','e','f','g','h','i','g','h','l','m','n','o','p','q','s','y','j','u','v','w','x','y','z']
+            touchStatus: false,
+            startY: 0,
+            timer: null
+        }
+    },
+    computed: {
+        letters () {
+            const letters = []
+            for(let i in this.cities) {
+                letters.push(i)
+            }
+            return letters;
+        }
+    },
+    updated() {
+        this.startY = this.$refs['A'][0].offsetTop
+        console.dir(this.$refs['A'][0] )
+    },
+    methods: {
+        handleLetterClick(e) {
+            this.$emit('change', e.target.innerText)
+        },
+        handleTouchStart () {
+            this.touchStatus = true
+        },
+        handleTouchMove (e) {
+            if(this.touchStatus) {
+                if(this.timer) {
+                    clearTimeout(this.timer) //节流
+                }
+                this.timer = setTimeout( () => { //节流
+                    //const startY = this.$refs['A'][0].offsetTop;
+                    const touchY = e.touches[0].clientY - 81
+                    const index = Math.floor((touchY - this.startY)/19.4);
+                    if(index >=0 && index< this.letters.length) {
+                        this.$emit('change', this.letters[index])
+                    }
+                })
+            }
+        },
+        handleTouchEnd () {
+            this.touchStatus = false
         }
     }
 }
