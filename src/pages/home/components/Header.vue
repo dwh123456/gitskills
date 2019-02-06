@@ -16,10 +16,16 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-  name: 'HomeHeader',
+  name: 'HomeHeader'
+  /* ,
   props: {
       city: String
+  } */
+  ,
+  computed: {
+      ...mapState(['city']) //把vuex中的city数据映射到这个计算属性中
   }
 }
 </script>
@@ -31,7 +37,7 @@ export default {
     @import '~styles/varibles.styl'
     
   .header
-    line-height: .86rem
+    line-height: .87rem
     display: flex
     background: $bgColor //使用全局的背景颜色
     color: #fff
@@ -42,7 +48,7 @@ export default {
             text-align: center
             font-size: .4rem
     .header-input
-        flex: 1
+        flex: 2
         background: #ffffff
         border-radius: .1rem
         margin-top: .12rem
@@ -54,7 +60,9 @@ export default {
     .header-right
         color: #fff
         float: right
-        width: 1.24rem
+        //width: 1.24rem
+        //flex: 1
+        padding: 0 .07rem
         text-align: center
         .arror-icon
             font-size: .24rem

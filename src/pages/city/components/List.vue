@@ -5,7 +5,7 @@
                 <div class="title border-topbottom">当前城市</div>
                 <div class="button-list">
                     <div class="button-wrapper">
-                        <div class="button">北京</div>
+                        <div class="button">{{this.currentCity}}</div>
                     </div>
                 </div>
             </div>
@@ -14,16 +14,20 @@
                 <div class="button-list">
                     <div class="button-wrapper" 
                          v-for="item of hotCities" 
-                         :key="item.id">
+                         :key="item.id"
+                         @click='handleCityClick(item.name)'>
                         <div class="button">{{item.name}}</div>
                     </div>
                     
                 </div>
             </div>
             <div class="area" v-for="(item, key) of cities" :key='key' :ref="key">
-                <div class="title border-topbottom">{{key}}</div>
+                <div class="title border-topbottom" >{{key}}</div>
                 <div class="item-list">
-                    <div class="item border-bottom" v-for="innerItem of item" :key="innerItem.id">{{innerItem.name}}</div>
+                    <div class="item border-bottom" 
+                         v-for="innerItem of item" 
+                         :key="innerItem.id"
+                         @click='handleCityClick(innerItem.name)'>{{innerItem.name}}</div>
                     
                 </div>
             </div>
@@ -37,6 +41,7 @@
 <script>
 import Bscroll from 'better-scroll'
 import CityAlphabet from './Alphabet.vue'
+import { mapState, mapMutations } from 'vuex'
 export default {
     name: 'List',
     props: {
@@ -48,6 +53,22 @@ export default {
            letter: ''
        }
     },
+    computed: {
+        ...mapState({
+            currentCity: 'city' //把vuex中的city属性映射到currentCity对象中
+        }) //把vuex中的city数据映射到这个计算属性中{可以是数组，也可以是对象}
+    },
+    methods: {
+        handleLetteClick(letter) {
+            this.letter = letter
+        },
+        handleCityClick (city) {
+            //this.$store.commit('changeCity', city); //如果转发数据多的时候就将commit替换为dispatch
+            this.changeCity(city)
+            this.$router.push('/')//编程式导航，该导航到主页
+        },
+        ...mapMutations (['changeCity'])//在mapMutations中我们有一个changeCity方法，如果要转发内容就直接调用这个方法，this.changeCity(city)
+    },
     watch: {
         letter () {
             if(this.letter) {
@@ -56,20 +77,14 @@ export default {
                 console.log(element)
                 console.log(this.$refs[this.letter])
             }
-            console.log(this.letter)
         }
     },
     components: {
         CityAlphabet
+        
     },
     mounted () {
         this.scroll = new Bscroll(this.$refs.wrapper)
-    },
-    methods: {
-        handleLetteClick(letter) {
-            this.letter = letter
-            console.log(letter)
-        }
     }
 }
 </script>

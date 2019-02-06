@@ -5,6 +5,7 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import App from './App'
 import router from './router'
 import fastClick from 'fastclick'
+import store from './store'
 //默认样式重置
 import './assets/styles/reset.css'  
 //边框放大缩小都为相同的像素
@@ -21,6 +22,7 @@ Vue.use(VueAwesomeSwiper)
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
