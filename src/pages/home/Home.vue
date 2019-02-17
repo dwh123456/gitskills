@@ -28,7 +28,7 @@ export default {
   },
   data () {
       return {
-        lastCity,
+        lastCity: '',
         swiperList: [],
         iconList: [],
         recommendList: [],
@@ -59,10 +59,11 @@ export default {
     }
   },
   mounted () {
-    this.lastCity = this.city
+    this.lastCity = this.city;
     this.getHomeInfo()
   },
-  activated () { //activated生命周期函数 当页面重新被显示时，才执行
+  activated () { 
+    //activated生命周期函数(只有当使用keep-alive标签时这个生命周期才有) 当页面重新被显示时才执行
     if (this.lastCity !== this.city) {
       this.lastCity = this.city
       this.getHomeInfo()
